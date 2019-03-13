@@ -11,16 +11,24 @@ const PORT =  1337;//
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
-app.post('/sendsms', (req, res) => {
-  const twiml = new MessagingResponse();
-  let cameraUrl = ngrokurl+'camera/';
-  let smsmessage = 'Hi there, click here to open up the camera \n\r' +  cameraUrl;
-  twiml.message(smsmessage);
-  let sms = new SMSManager(req.body.phonenumber,req.body.prefix,smsmessage);
-  sms.SendSMS();
+app.post('/sendsms', async (req, res) => {
+  try {
+    const twiml = new MessagingResponse();
+    let cameraUrl = ngrokurl+'camera/';
+    let smsmessage = 'Hi there, click here to open up the camera \n\r' +  cameraUrl;
+    twiml.message(smsmessage);
+    let sms = new SMSManager(req.body.phonenumber,req.body.prefix,smsmessage);
+    
+    await sms.SendSMS();
 
-  res.writeHead(200, {'Content-Type': 'application/x-www-form-urlencoded'});
-  res.end(twiml.toString());
+    res.writeHead(200, {'Content-Type': 'application/x-www-form-urlencoded'});
+    res.end(twiml.toString());
+  } catch (error) {
+    res.writeHead(500, {'Content-Type': 'application/x-www-form-urlencoded'});
+    console.log(error);
+
+  }
+
 });
 
 http.createServer(app).listen(PORT, () => {
