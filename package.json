@@ -1,0 +1,28 @@
+{
+  "name": "server-techsee",
+  "version": "1.0.0",
+  "description": "node server",
+  "main": "server.js",
+  "dependencies": {
+    "authy": "^1.4.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "http": "^0.0.0",
+    "twilio": "^3.29.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Caspidev/techsee-assignment-server.git"
+  },
+  "author": "@OrCaspi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Caspidev/techsee-assignment-server/issues"
+  },
+  "homepage": "https://github.com/Caspidev/techsee-assignment-server#readme"
+}
