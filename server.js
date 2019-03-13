@@ -5,6 +5,8 @@ const SMSManager = require('./sms-manager.js');
 const bodyParser = require('body-parser');
 const ngrokurl = 'https://react-app-techsee.herokuapp.com/'; //https only to open up the camera
 const app = express();
+const PORT = process.env.PORT | 1337;
+
 
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
@@ -21,6 +23,6 @@ app.post('/sendsms', (req, res) => {
   res.end(twiml.toString());
 });
 
-http.createServer(app).listen(1337, () => {
-  console.log('Express server listening on port 1337');
+http.createServer(app).listen(PORT, () => {
+  console.log('Express server listening on port '+ PORT);
 });
