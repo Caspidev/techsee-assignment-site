@@ -5,7 +5,7 @@ const SMSManager = require('./sms-manager.js');
 const bodyParser = require('body-parser');
 const ngrokurl = 'https://react-app-techsee.herokuapp.com/'; //https only to open up the camera
 const app = express();
-const PORT = process.env.PORT | 1337;
+const PORT =  1337;//
 
 
 app.use(bodyParser.json()); // support json encoded bodies
@@ -17,7 +17,7 @@ app.post('/sendsms', (req, res) => {
   let smsmessage = 'Hi there, click here to open up the camera \n\r' +  cameraUrl;
   twiml.message(smsmessage);
   let sms = new SMSManager(req.body.phonenumber,req.body.prefix,smsmessage);
- // sms.SendSMS();
+  sms.SendSMS();
 
   res.writeHead(200, {'Content-Type': 'application/x-www-form-urlencoded'});
   res.end(twiml.toString());
