@@ -3,7 +3,7 @@ const express = require('express');
 const MessagingResponse = require('twilio').twiml.MessagingResponse;
 const SMSManager = require('./sms-manager.js');
 const bodyParser = require('body-parser');
-const ngrokurl = 'https://react-app-techsee.herokuapp.com/'; //https only to open up the camera
+const herokuapp = 'https://react-app-techsee.herokuapp.com/'; //https only to open up the camera
 const app = express();
 const PORT =  1337;//
 
@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.post('/sendsms', async (req, res) => {
   try {
     const twiml = new MessagingResponse();
-    let cameraUrl = ngrokurl+'camera/';
+    let cameraUrl = herokuapp + 'camera/';
     let smsmessage = 'Hi there, click here to open up the camera \n\r' +  cameraUrl;
     twiml.message(smsmessage);
     let sms = new SMSManager(req.body.phonenumber,req.body.prefix,smsmessage);
