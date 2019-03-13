@@ -5,7 +5,7 @@ const SMSManager = require('./sms-manager.js');
 const bodyParser = require('body-parser');
 const herokuapp = 'https://react-app-techsee.herokuapp.com/'; //https only to open up the camera
 const app = express();
-const PORT =  1337;//
+const PORT =  process.env.PORT || 1337;
 
 
 app.use(bodyParser.json()); // support json encoded bodies
